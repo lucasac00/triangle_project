@@ -27,9 +27,11 @@ def test_all_sides_zero():
     assert t.type == TriangleType.INVALID
 
 def test_float_numbers():
-    t = Triangle(1, 0.99999999999999999999999999999999999, 0.99999999999999999999999999999999999)  
-    assert t.type == TriangleType.EQUILATERAL
-
+    t1 = 0.12
+    t2 = 0.004
+    t3 = 0.156
+    with pytest.raises(ValueError):
+        Triangle(t1, t2, t3) 
 
 def test_string():
     t1 = "a"
