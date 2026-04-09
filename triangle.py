@@ -15,6 +15,10 @@ class Triangle:
     side2: int
     side3: int
 
+    def __post_init__(self) -> None:
+        if not all(isinstance(side, int) and not isinstance(side, bool) for side in (self.side1, self.side2, self.side3)):
+            raise ValueError("Triangle sides must be integers")
+
     @property
     def type(self) -> TriangleType:
         a, b, c = self.side1, self.side2, self.side3
