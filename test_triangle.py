@@ -134,3 +134,45 @@ def test_invalid_angle():
     t = Triangle(1, 2, 3)
     assert t.angle_type == TriangleAngleType.INVALID, f"Expected INVALID angle for sides {t.side1}, {t.side2}, {t.side3} but got {t.angle_type}"
     assert t.reason == "This triangle is invalid because the sum of sides 1 and 2 is not greater than side 3"
+
+    
+def test_right_angle_permutations():
+    t1 = Triangle(4, 5, 3)
+    t2 = Triangle(5, 3, 4)
+    
+    assert t1.angle_type == TriangleAngleType.RIGHT
+    assert t1.reason is None
+    assert t2.angle_type == TriangleAngleType.RIGHT
+    assert t2.reason is None
+    
+def test_side_message_valid():
+    t = Triangle(3, 3, 3)
+    assert t.side_message == "📐 This triangle (sides: 3, 3, 3) is equilateral"
+    assert t.reason is None
+
+def test_side_message_invalid():
+    t = Triangle(1, 2, 3)
+    assert t.reason == "This triangle is invalid because the sum of sides 1 and 2 is not greater than side 3"
+    assert t.side_message == f"📐 This triangle (sides: 1, 2, 3) is invalid. {t.reason}"
+
+def test_angle_message_valid():
+    t = Triangle(3, 4, 5)
+    assert t.angle_message == "📐 This triangle (sides: 3, 4, 5) is right"
+    assert t.reason is None
+
+def test_angle_message_invalid():
+    t = Triangle(1, 1, 5)
+    assert t.reason == "This triangle is invalid because the sum of sides 1 and 1 is not greater than side 5"
+    assert t.angle_message == f"📐 This triangle (sides: 1, 1, 5) is invalid. {t.reason}"
+    
+def test_run_cli_valid(monkeypatch, capsys):
+    inputs = iter(["3", "4", "5"])
+    monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+
+    run_cli()
+    captured = capsys.readouterr()
+    
+    assert "📐 This triangle (sides: 3, 4, 5) is scalene" in captured.out
+    assert "📐 This triangle (sides: 3, 4, 5) is right" in captured.out
+
+
