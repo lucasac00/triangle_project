@@ -21,3 +21,23 @@ Create a virtual environment and install dependencies:
 python -m venv venv
 source venv/bin/activate   # Linux/macOS
 pip install pytest
+```
+
+## Running Tests
+
+Run all tests:
+```bash
+python -m pytest
+```
+
+Run a specific test with verbose output (shows pass messages):
+```bash
+python -m pytest -s test_triangle.py::test_equilateral
+```
+
+## Usage
+
+Run the interactive CLI:
+```bash
+python triangle.py
+```

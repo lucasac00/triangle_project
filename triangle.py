@@ -50,17 +50,26 @@ class Triangle:
         if c_sq > sq_sum:
             return TriangleAngleType.OBTUSE
         return TriangleAngleType.ACUTE
+    @property
+    def reason(self) -> str | None:
+        a, b, c = sorted((self.side1, self.side2, self.side3))
+        if a <= 0:
+            negative_sides = [s for s in (self.side1, self.side2, self.side3) if s <= 0]
+            return f"This triangle is invalid because side(s) {', '.join(map(str, negative_sides))} are not positive"
+        if a + b <= c:
+            return f"This triangle is invalid because the sum of sides {a} and {b} is not greater than side {c}"
+        return None
 
     @property
     def side_message(self) -> str:
         if self.side_type == TriangleSideType.INVALID:
-            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid"
+            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid. {self.reason}"
         return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is {self.side_type.name.lower()}"
 
     @property
     def angle_message(self) -> str:
         if self.angle_type == TriangleAngleType.INVALID:
-            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid"
+            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid. {self.reason}"
         return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is {self.angle_type.name.lower()}"
 
 
@@ -70,7 +79,8 @@ def run_cli() -> None:
     side3 = int(input("Enter side 3: "))
     triangle = Triangle(side1, side2, side3)
     print(triangle.side_message)
-    print(triangle.angle_message)
+    if triangle.angle_type != TriangleAngleType.INVALID:
+        print(triangle.angle_message)
 
 
 if __name__ == "__main__":
