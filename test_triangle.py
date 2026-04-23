@@ -12,7 +12,7 @@ def test_equilateral():
     t3 = 7
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.EQUILATERAL
+    assert t.side_type == TriangleSideType.EQUILATERAL
 
 def test_scalene():
     t1 = 3
@@ -20,7 +20,7 @@ def test_scalene():
     t3 = 5
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.SCALENE
+    assert t.side_type == TriangleSideType.SCALENE
 
 def test_isoceles():
     t1 = 10
@@ -28,7 +28,7 @@ def test_isoceles():
     t3 = 12
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.ISOSCELES
+    assert t.side_type == TriangleSideType.ISOSCELES
 
 def test_invalid():
     t1 = 1
@@ -36,7 +36,7 @@ def test_invalid():
     t3 = 5  
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.INVALID
+    assert t.side_type == TriangleSideType.INVALID
 
 def test_negative():
     t1 = -1
@@ -44,7 +44,7 @@ def test_negative():
     t3 = 3
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.INVALID
+    assert t.side_type == TriangleSideType.INVALID
 
 def test_all_sides_zero():
     t1 = 0
@@ -52,7 +52,7 @@ def test_all_sides_zero():
     t3 = 0
 
     t = Triangle(t1, t2, t3)
-    assert t.type == TriangleSideType.INVALID
+    assert t.side_type == TriangleSideType.INVALID
 
 def test_float_numbers():
     t1 = 0.012
@@ -75,25 +75,25 @@ def test_boolean():
         
 def test_sum_equals_third_side():
     t = Triangle(2, 3, 5)
-    assert t.type == TriangleSideType.INVALID
+    assert t.side_type == TriangleSideType.INVALID
 
 def test_isoceles_diff():
     # side1 == side3 & side2 == side3
     t1 = Triangle(10, 12, 10)
     t2 = Triangle(12, 10, 10)
-    assert t1.type == TriangleSideType.ISOSCELES
-    assert t2.type == TriangleSideType.ISOSCELES
+    assert t1.side_type == TriangleSideType.ISOSCELES
+    assert t2.side_type == TriangleSideType.ISOSCELES
 
 def test_invalid_diff():
     t1 = Triangle(5, 1, 1)
     t2 = Triangle(1, 5, 1)
-    assert t1.type == TriangleSideType.INVALID
-    assert t2.type == TriangleSideType.INVALID
+    assert t1.side_type == TriangleSideType.INVALID
+    assert t2.side_type == TriangleSideType.INVALID
     
 def test_single_zero():
     # only one side = 0
     t = Triangle(0, 3, 4)
-    assert t.type == TriangleSideType.INVALID
+    assert t.side_type == TriangleSideType.INVALID
 
 
 def test_right_angle():

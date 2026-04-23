@@ -52,10 +52,6 @@ class Triangle:
         return TriangleAngleType.ACUTE
 
     @property
-    def type(self) -> TriangleSideType:
-        return self.side_type
-
-    @property
     def side_message(self) -> str:
         if self.side_type == TriangleSideType.INVALID:
             return f"📐 This sides {self.side1} {self.side2} {self.side3} is invalid"
