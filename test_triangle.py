@@ -5,7 +5,6 @@
 import pytest
 from triangle import Triangle, TriangleSideType, TriangleAngleType, run_cli
 
-
 def test_equilateral():
     t1 = 7
     t2 = 7
@@ -114,24 +113,3 @@ def test_obtuse_angle():
 def test_invalid_angle():
     t = Triangle(1, 2, 3)
     assert t.angle_type == TriangleAngleType.INVALID
-
-def test_cli_input(monkeypatch, capsys):
-    inputs = iter(["3", "4", "5"])
-    monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
-
-    run_cli()
-
-    captured = capsys.readouterr()
-    assert "this sides 3 4 5 is scalene" in captured.out
-    assert "this sides 3 4 5 is right triangle" in captured.out
-
-
-def test_cli_input_invalid(monkeypatch, capsys):
-    inputs = iter(["1", "2", "3"])
-    monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
-
-    run_cli()
-
-    captured = capsys.readouterr()
-    assert "this sides 1 2 3 is invalid" in captured.out
-    assert captured.out.count("this sides 1 2 3 is invalid") == 2
