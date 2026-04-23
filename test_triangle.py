@@ -1,3 +1,7 @@
+## Lucas de Araújo Cardoso - 813583
+## Arthur Braga da Fonseca - 811461
+## Samuel Said - 800209
+
 import pytest
 from triangle import Triangle, TriangleType
 
