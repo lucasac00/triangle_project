@@ -54,14 +54,14 @@ class Triangle:
     @property
     def side_message(self) -> str:
         if self.side_type == TriangleSideType.INVALID:
-            return f"📐 This sides {self.side1} {self.side2} {self.side3} is invalid"
-        return f"📐 This sides {self.side1} {self.side2} {self.side3} is {self.side_type.name.lower()}"
+            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid"
+        return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is {self.side_type.name.lower()}"
 
     @property
     def angle_message(self) -> str:
         if self.angle_type == TriangleAngleType.INVALID:
-            return f"📐 This sides {self.side1} {self.side2} {self.side3} is invalid"
-        return f"📐 This sides {self.side1} {self.side2} {self.side3} is {self.angle_type.name.lower()} triangle"
+            return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is invalid"
+        return f"📐 This triangle (sides: {self.side1}, {self.side2}, {self.side3}) is {self.angle_type.name.lower()}"
 
 
 def run_cli() -> None:
